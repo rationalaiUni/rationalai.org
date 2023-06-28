@@ -1,0 +1,25 @@
+{{- define "main" }}
+
+<div id="content" class="my-8 px-5 lg:px-2">
+  
+
+    {{ $postsProjectMain := where site.RegularPages "Section" "posts" }}
+    {{ $postsProjectMain = where $postsProjectMain "Params.category" "intersect" (slice "Project") }}
+
+    {{ $s := slice }}
+    {{- range $postsProjectMain }}
+    {{ $s = $s | append (index .Params.tags 0) | uniq }}
+    {{ end -}}
+
+    {{ .Scratch.Set "tags" $s }}
+
+    {{ partial "project.html" . }}
+    
+
+    
+
+  
+  {{ partial "workshop.html" . }}
+</div>
+
+{{ end -}}

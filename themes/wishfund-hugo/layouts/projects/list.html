@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<!-- Section About Start -->
+<section class="section causes">
+  <div class="container">
+    <div class="row">
+      {{ $paginator := .Paginate .Data.Pages }}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-4 col-md-6">
+        <div class="card mb-4 cause-item">
+          <div class="row no-gutters">
+            <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100" alt="{{ .Title | markdownify }}">
+            <div class="card-body">
+              <h3 class="mb-3"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+              <p class="card-text mb-4">{{ .Summary }}</p>
+              <a href="/donation" class="btn btn-main rounded">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ template "_internal/pagination.html" . }}
+  </div>
+</section>
+
+{{ partial "cta.html" . }}
+
+{{ end }}

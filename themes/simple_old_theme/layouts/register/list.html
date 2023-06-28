@@ -1,0 +1,48 @@
+{{- define "main" }}
+
+<style>
+  .register_wrapper {
+    padding: 10px 20px 10px 20px;
+  }
+</style>
+<div id="content" class="mb-[230px] mt-10">
+    <div class="register_wrapper">
+
+    <div class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2 pl-5">
+
+
+
+      <div class="group mb-3" href="https://youtu.be/D0UnqGm_miA" target="_blank">
+        <h2 class="mt-2.5 mb-2.5 text-1xl font-medium leading-8">Volunteer-Donate</h2>
+        <p>
+          To actively participate and network in openai.university which is a community based non-profit
+          organization kindly register yourself as a volunteer by donating to the openai.university donation fund
+          which will be utilized for operational, library and project infrastruture and eligible scholarships for keen
+          learners
+        </p>
+        <br>
+        <p>
+          We kindly request you to make a donation and pledge your commitment and support to learn network and grow.
+        </p>
+      </div>
+
+      <div class="group mb-3" href="https://youtu.be/D0UnqGm_miA" target="_blank">
+        {{ partial "register.html" . }}
+        
+      </div>
+      
+      
+      
+      
+    </div>
+
+    <div class="mb-8">
+      {{ partial "register_comparison.html" . }}
+    </div>
+  </div>
+</div>
+
+
+
+
+{{ end -}}

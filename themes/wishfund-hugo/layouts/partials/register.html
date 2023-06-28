@@ -1,0 +1,270 @@
+<script src="https://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
+<style>
+
+
+
+
+
+  
+
+  
+
+  .donate_form .radio {
+    display: inline-block;
+    position: relative;
+  }
+
+  .donate_form .radio .checkmark {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    margin-right: 5px;
+  }
+
+  .donate_form .radio input {
+    display: none;
+  }
+
+  .donate_form .radio input:checked~.checkmark {
+    background-color: #003087;
+  }
+
+  .donate_form .input {
+    position: relative;
+  }
+
+  .donate_form .input:before {
+    content: "$";
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateX(-100%) translateY(-50%);
+  }
+
+  .donate_form .input input[type=number] {
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    padding: 0 120px 0 20px;
+    color: #555;
+    font-size: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .donate_form .input input[type=number]::-webkit-inner-spin-button,
+  .donate_form .input input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .donate_form .input .addition {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .donate_form #monthly .input input[type=number] {
+    padding: 0 120px 0 20px;
+  }
+
+  .donate_form #once .input input[type=number] {
+    padding: 0 55px 0 20px;
+  }
+
+  .donate_form .description {
+    background-color: #0c9bfafb;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #aaa;
+    color: #f7f7f7;
+
+  }
+
+  .donate_form .body {
+    border: 1px solid #7e754a;
+    border-top: none;
+    padding: 25px;
+  }
+
+  .donate_form .body .info {
+    margin-bottom: 20px;
+    color: #9a9065;
+    color: #686767;
+  }
+
+
+
+  .donate_form .goal,
+  .donate_form .subgoal,
+  .donate_form .thank-you {
+    text-align: center;
+    max-width: 470px;
+    margin: 0 auto;
+  }
+
+  .donate_form .goal {
+    font-size: 21px;
+    line-height: 25.2px;
+    color: #FFF;
+    margin-bottom: 20px;
+  }
+
+  .donate_form .subgoal {
+    font-size: 12px;
+    line-height: 16.8px;
+    color: #2a3033;
+    margin-bottom: 30px;
+  }
+
+  .donate_form .thank-you {
+    font-size: 43px;
+    line-height: 51.6px;
+    color: #FFF;
+  }
+</style>
+
+<script>
+  jQuery(document).ready(function ($) {
+
+    $('.amount_cls').click(function () {
+      value = $(this).attr('price');
+      //const dollar = value.split("$");
+      // $(".number_field").val(parseInt(dollar[1]))
+      $(".number_field").val(value)
+    });
+    $('.tabs .btn_styles').click(function () {
+      if (!$(this).hasClass('active')) {
+        let active, parent, tab;
+        active = $(this);
+        parent = $(this).closest('.tabs').first();
+        parent.find('.btn_styles').each(function () {
+          tab = $($(this).attr('href'));
+          if ($(this).is(active)) {
+            $(this).addClass('active');
+            if (tab.length > 0) tab.show();
+          } else {
+            $(this).removeClass('active');
+            if (tab.length > 0) tab.hide();
+          }
+        });
+      }
+
+      return false;
+    });
+  });
+</script>
+<input type="hidden" name="business" value="{{ .Params.billing_email }}">
+<div class="donate_form">
+  <label class="col-form-label mb-3 h3">Select Payment Option</label>
+  <div class="form-row">
+    
+    <div class="form-group col-md-6">
+      
+      <a href="#monthly" class="btn_styles monthly active list-group-item">
+        Monthly
+      </a>
+    </div>
+    <div class="form-group col-md-6">
+      <a href="#once" class="btn_styles once list-group-item">
+        Give Once
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="form-row">
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="once" style="display: none;">
+    <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business" value="{{ .Params.billing_email }}">
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+    <!-- Specify details about the contribution -->
+    <!-- <input type="hidden" name="item_name" value="Friends of the Park">
+					    <input type="hidden" name="item_number" value="Fall Cleanup Campaign"> -->
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="charset" value="utf-8">
+
+    <div class="row">
+
+      <ul class="list-group list-group-horizontal-lg tabs">
+        <li class="list-group-item"><a href="" price="149" class="amount_cls btn_styles"><i class="icofont-mastercard-alt mr-2"></i>Awareness</a></li>
+        <li class="list-group-item"><a href="" price="249" class="amount_cls btn_styles"><i class="icofont-bank-transfer-alt mr-2"></i>Committed</a></li>
+        <li class="list-group-item"><a href="" price="449" class="amount_cls btn_styles"><i class="icofont-payoneer-alt mr-2"></i>Intense Focus</a></li>
+      </ul>
+
+      
+    </div>
+
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="body">
+
+          <div class="input">
+            <input type="number" class="number_field" name="amount" value="50">
+            <div class="addition">USD</div>
+          </div>
+          <div class="info">{{ .Params.donate_text }}</div>
+          <div class="donate_buttons">
+            <!-- Display the payment button. -->
+            <input type="submit" value="Donate Once" alt="Donate Once" class="btn_styles">
+            <img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="form-row">
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="monthly">
+    <!-- Identify your business so that you can bill for payments. -->
+    <input type="hidden" name="business" value="{{ .Params.billing_email }}">
+    <!-- Specify an Automatic Billing button. -->
+    <input type="hidden" name="cmd" value="_xclick-subscriptions">
+    <!-- Specify details about the automatic billing plan. -->
+    <input type="hidden" name="lc" value="US">
+    <input type="hidden" name="no_note" value="1">
+    <input type="hidden" name="no_shipping" value="1">
+    <input type="hidden" name="src" value="1">
+    <input type="hidden" name="p3" value="1">
+    <input type="hidden" name="t3" value="M">
+    <input type="hidden" name="currency_code" value="USD">
+    <!-- Make sure you get the buyer's address during checkout. -->
+    <input type="hidden" name="no_shipping" value="2">
+    <input type="hidden" name="charset" value="utf-8">
+
+    <div class="row">
+
+      <ul class="list-group list-group-horizontal-lg tabs">
+        <li class="list-group-item"><a href="" price="149" class="amount_cls btn_styles"><i class="icofont-mastercard-alt mr-2"></i>Awareness</a></li>
+        <li class="list-group-item"><a href="" price="249" class="amount_cls btn_styles"><i class="icofont-bank-transfer-alt mr-2"></i>Committed</a></li>
+        <li class="list-group-item"><a href="" price="449" class="amount_cls btn_styles"><i class="icofont-payoneer-alt mr-2"></i>Intense Focus</a></li>
+      </ul>
+
+      
+    </div>
+
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="body">
+
+          <div class="input">
+            <input type="number" class="number_field" name="a3" value="50">
+            <div class="addition">USD / MONTH</div>
+          </div>
+          <div class="info">{{ .Params.donate_text }}</div>
+          <div class="donate_buttons">
+            <!-- Display the Automatic Billing button. -->
+            <input type="submit" value="Donate " alt="Donate " class="btn_styles">
+            <img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

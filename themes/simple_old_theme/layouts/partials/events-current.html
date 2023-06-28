@@ -1,0 +1,47 @@
+
+    
+  
+    <div class="table">
+  
+      <div class="row header blue">
+        <div class="cell">
+          Serial No
+        </div>
+        <div class="cell" style="width: 30%">
+          Event Description
+        </div>
+        <div class="cell">
+          Register Link
+        </div>
+        <div class="cell">
+          Cost
+        </div>
+        <div class="cell" style="width: 30%">
+            Schedule
+        </div>
+      </div>
+      {{ $context := . }}
+        {{ $context.Scratch.Set "counter" 1 }}
+      {{- range (where site.RegularPages "Section" "current_events") }}
+      <div class="row">
+        <div class="cell">
+            {{ $context.Scratch.Get "counter" }}
+      {{ $context.Scratch.Add "counter" 1 }}
+        </div>
+        <div class="cell">
+            {{ .Params.description }} 
+        </div>
+        <div class="cell">
+            <a class="text-blue-600 hover:text-blue-700" href="{{ .Params.register_link }}">{{ .Params.register_text }}</a>
+        </div>
+        <div class="cell">
+            {{ .Params.cost }}
+        </div>
+        <div class="cell">
+            {{ .Params.schedule }}
+          </div>
+      </div>
+      {{ end }}
+          
+    </div>
+  

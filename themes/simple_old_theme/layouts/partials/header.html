@@ -1,0 +1,137 @@
+<!-- BEGIN Header -->
+<header>
+  <!-- BEGIN Desktop Navbar -->
+  <div
+    class="relative hidden flex-col content-center justify-center border-b border-secondary pb-6 lg:flex"
+  >
+    <div id="logo" class="mt-6 mb-8 flex justify-center">
+      <a href="/">
+        <img
+          class="h-[100px] w-[428px]"
+          src="/assets/images/logo/RAIUNI_LOGO.png"
+          alt="logo"
+        />
+      </a>
+    </div>
+    <nav>
+      <ul class="justify-center gap-9 font-helvetica leading-5 lg:flex">
+        {{- range site.Menus.main }}
+          <li>
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          </li>
+        {{ end -}}
+      </ul>
+    </nav>
+    <div class="absolute right-0 top-0 mt-7 hidden gap-3 lg:flex">
+      <a
+        href="{{ site.Params.github }}"
+        title="Subscribe on Github"
+        target="_blank"
+      >
+        <img
+          class="h-full w-full scale-125"
+          src="/assets/images/icons/github-fill.svg"
+          alt="github"
+        />
+      </a>
+      <a
+        href="{{ site.Params.twitter }}"
+        title="Follow on Twitter"
+        target="_blank"
+      >
+        <img
+          class="h-full w-37"
+          src="/assets/images/twitter_64.png"
+          alt="twitter"
+        />
+      </a>
+      <a
+        href="{{ site.Params.youtube }}"
+        title="Subscribe on YouTube"
+        target="_blank"
+      >
+        <img
+          class="h-full w-full"
+          src="/assets/images/icons8-youtube-48.png"
+          alt="youtube"
+        />
+      </a>
+    </div>
+  </div>
+  <!-- EOL Desktop Navbar -->
+  <!-- BEGIN Mobile Navbar -->
+  <div class="block lg:hidden" x-data="{ menuOpen: false }">
+    <div
+      class="mx-5 mt-4 flex content-center justify-between lg:hidden"
+      :class="!menuOpen && 'border-b border-secondary'"
+    >
+      <div id="logo" class="mt-2">
+        <a href="/">
+          <img
+            class="h-[22px] w-[196px]"
+            src="/assets/images/logo/OpenAI-University_logo.png"
+            alt="logo"
+          />
+        </a>
+      </div>
+      <div class="mb-4">
+        <button
+          class="flex h-[34px] w-[37px] cursor-pointer content-center justify-center bg-dark p-[5px] outline-none"
+          @click="menuOpen = !menuOpen"
+        >
+          <img
+            class="h-full w-full scale-125"
+            src="/assets/images/icons/eva_menu-fill.svg"
+            alt="menu"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="transition-height bg-dark text-white duration-700"
+      :class="menuOpen ? 'h-[240px] overflow-y-scroll py-4' : 'h-[0px] overflow-hidden '"
+    >
+      <ul class="flex flex-col gap-4 font-helvetica">
+        {{- range site.Menus.main }}
+          <li class="text-center">
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          </li>
+        {{ end -}}
+        <li class="flex justify-center gap-6">
+          <a
+            href="{{ site.Params.github }}"
+            title="Follow on Github"
+            target="_blank"
+          >
+            <img
+              class="h-full w-full scale-125"
+              src="/assets/images/icons/github-fill-white.svg"
+              alt="Github"
+            />
+          </a>
+          <a
+            href="{{ site.Params.twitter }}"
+            title="Follow on Twitter"
+            target="_blank"
+          >
+            <img
+              class="h-full w-full"
+              src="/assets/images/twitter_64.png"
+              alt="twitter"
+            />
+          </a>
+          <a href="{{ site.Params.youtube }}" title="Subscribe on YouTube">
+            <img
+              class="h-full w-full"
+              src="/assets/images/icons8-youtube-48"
+              alt="youtube"
+              target="_blank"
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- EOL Mobile Navbar -->
+</header>
+<!-- EOL Header -->
